@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Hera & Ahmad</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f1e5;
+            color: #4a4a4a;
+            overflow-x: hidden;
+        }
+
+        /* Tema Batik Jawa Barat (Aksen Cokelat & Emas) */
+        .batik-bg {
+            background-image: url('https://www.transparenttextures.com/patterns/batik-fractal.png');
+            background-color: #fff9f0;
+        }
+
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        h1, h2 { font-family: 'Great Vibes', cursive; color: #b8860b; }
+        
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+            border-top: 5px solid #b8860b;
+        }
+
+        .btn-gold {
+            background-color: #b8860b;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 30px;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            background: rgba(184, 134, 11, 0.8);
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+        }
+    </style>
+</head>
+<body class="batik-bg">
+
+    <section class="hero-section">
+        <div data-aos="fade-up">
+            <p class="mb-2">The Wedding of</p>
+            <h1 style="font-size: 4rem; color: white;">Hera & Ahmad</h1>
+            <p>01 April 2026</p>
+        </div>
+    </section>
+
+    <section class="container py-5 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8" data-aos="fade-up">
+                <h2 class="mb-4">Mempelai</h2>
+                <div class="row mt-5">
+                    <div class="col-md-5">
+                        <h3 class="fw-bold">Hera</h3>
+                        <p>Putri dari Bpk. Fulan & Ibu Fulana</p>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <h1 style="font-size: 3rem;">&</h1>
+                    </div>
+                    <div class="col-md-5">
+                        <h3 class="fw-bold">Ahmad</h3>
+                        <p>Putra dari Bpk. Fulan & Ibu Fulana</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-6 card-custom p-5" data-aos="zoom-in">
+                <h2>Informasi Acara</h2>
+                <hr>
+                <p><strong>Rabu, 01 April 2026</strong></p>
+                <p>Pukul: 09:00 WIB - Selesai</p>
+                <p class="mt-4"><strong>Lokasi:</strong><br>
+                Kecamatan Subang, Cigadung, Kabupaten Subang, Jawa Barat</p>
+                
+                <div class="ratio ratio-16x9 mt-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.375492193496!2d107.7554!3d-6.5714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e693b8633391217%3A0x401e8f1fc288500!2sCigadung%2C%20Kec.%20Subang%2C%20Kabupaten%20Subang%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1710000000000" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5 text-center" data-aos="fade-up">
+        <div class="card-custom p-4 d-inline-block mx-auto">
+            <h2>Wedding Gift</h2>
+            <p>Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin memberi tanda kasih, dapat melalui rekening berikut:</p>
+            <div class="p-3 border rounded mb-3">
+                <p class="mb-1"><strong>Bank Central Asia (BCA)</strong></p>
+                <p class="mb-0">No. Rekening: 1234567890</p>
+                <p class="mb-0">a.n Ahmad</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center" data-aos="fade-up">
+                <h2>Ucapan Selamat & Doa</h2>
+                <form class="mt-4 text-start p-4 bg-white rounded shadow-sm">
+                    <div class="mb-3">
+                        <label class="form-label">Nama</label>
+                        <input type="text" class="form-control" placeholder="Nama Anda">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ucapan</label>
+                        <textarea class="form-control" rows="3" placeholder="Tulis ucapan & doa..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-gold w-100">Kirim Ucapan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        let music = document.getElementById("bgMusic");
+        let icon = document.getElementById("music-icon");
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                icon.innerHTML = "⏸";
+            } else {
+                music.pause();
+                icon.innerHTML = "🎵";
+            }
+        }
+
+        // Play music otomatis saat interaksi pertama
+        window.addEventListener('click', function() {
+            if(music.paused) {
+                music.play();
+                icon.innerHTML = "⏸";
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
