@@ -21,12 +21,13 @@
             background-color: var(--soft-blue);
             color: var(--text-dark);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(26, 58, 95, 0.6), rgba(26, 58, 95, 0.6)), 
+            background: linear-gradient(rgba(26, 58, 95, 0.7), rgba(26, 58, 95, 0.7)), 
                         url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
@@ -35,76 +36,87 @@
             text-align: center;
             color: white;
             padding: 20px;
+            position: fixed;
+            width: 100%;
+            z-index: 2000;
+            transition: transform 1s ease-in-out;
         }
 
         .hero h1 { font-family: 'Great Vibes', cursive; font-size: 4rem; margin-bottom: 10px; }
         .hero p { font-size: 1.2rem; letter-spacing: 3px; }
 
         /* General Section */
-        section { padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
-        .container { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        section { padding: 80px 20px; text-align: center; }
+        .container { max-width: 700px; margin: auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 8px solid var(--primary-blue); }
 
-        .floral-ornament { color: var(--primary-blue); font-size: 2rem; margin: 20px 0; }
-        h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); }
+        .floral-ornament { color: var(--primary-blue); font-size: 2.5rem; margin: 20px 0; opacity: 0.7; }
+        h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 2rem; margin-bottom: 30px; }
 
         /* Countdown */
-        #countdown { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
-        .timer-box { background: var(--primary-blue); color: white; padding: 15px; border-radius: 10px; min-width: 70px; }
-        .timer-box span { display: block; font-size: 1.5rem; font-weight: bold; }
-
-        /* Card Info */
-        .card-info { border: 1px solid #ddd; padding: 20px; border-radius: 15px; margin: 20px 0; transition: 0.3s; }
-        .card-info:hover { border-color: var(--primary-blue); }
+        #countdown { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+        .timer-box { background: var(--primary-blue); color: white; padding: 15px; border-radius: 15px; min-width: 80px; }
+        .timer-box span { display: block; font-size: 1.8rem; font-weight: bold; }
 
         /* Map & Button */
-        .map-container { margin: 20px 0; border-radius: 15px; overflow: hidden; border: 4px solid white; }
-        .btn-wa { background-color: #25d366; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; display: inline-block; margin-top: 20px; font-weight: 600; }
+        .map-container { margin: 20px 0; border-radius: 20px; overflow: hidden; border: 5px solid var(--soft-blue); }
+        .btn-wa { background-color: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; display: inline-block; margin-top: 20px; font-weight: 600; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
 
         /* Bank Info */
-        .bank-logo { height: 40px; margin-bottom: 10px; }
+        .bank-card { border: 2px dashed var(--primary-blue); padding: 25px; border-radius: 20px; margin: 20px 0; background-color: #fbfdff; }
+        .bank-logo { height: 35px; margin-bottom: 15px; }
 
         /* Audio Control */
-        .audio-control { position: fixed; bottom: 20px; right: 20px; background: var(--primary-blue); color: white; padding: 15px; border-radius: 50%; cursor: pointer; z-index: 1000; }
+        .audio-control { position: fixed; bottom: 30px; right: 30px; background: white; color: var(--primary-blue); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* Utilities */
+        .hidden { transform: translateY(-100%); pointer-events: none; }
     </style>
 </head>
 <body>
 
-    <div class="audio-control" onclick="toggleMusic()">
-        <i id="music-icon" class="bi bi-music-note-beamed"></i>
-    </div>
     <audio id="bgMusic" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+        <source src="lagu-undangan.mp3" type="audio/mpeg">
     </audio>
 
-    <section class="hero">
+    <div class="audio-control" id="audioBtn" onclick="toggleMusic()">
+        <i id="music-icon" class="bi bi-pause-fill"></i>
+    </div>
+
+    <div class="hero" id="cover">
         <p>THE WEDDING OF</p>
         <h1>Hera & Ahmad</h1>
         <p>01 April 2026</p>
-        <a href="#content" class="btn-wa" style="background: var(--accent-gold);">Buka Undangan</a>
-    </section>
+        <div class="floral-ornament"><i class="bi bi-flower1"></i></div>
+        <button onclick="openInvitation()" class="btn-wa" style="background: var(--accent-gold); border: none; cursor: pointer; color: white; font-family: inherit;">
+            <i class="bi bi-envelope-open-heart"></i> Buka Undangan
+        </button>
+    </div>
 
-    <div id="content">
-        <section>
+    <div id="main-content">
+        <section id="salam">
             <div class="container">
                 <p><i>Bismillahirrahmanirrahiim</i></p>
-                <p>Assalamualaikum Warahmatullahhi Wabarakatuh</p>
+                <p><b>Assalamualaikum Warahmatullahhi Wabarakatuh</b></p>
                 <p>Maha Suci Allah Swt. yang telah menciptakan makhluknya berpasang-pasangan, semoga ridho-Mu tercurah mengiringi pernikahan kami.</p>
-                <div class="floral-ornament"><i class="bi bi-flower1"></i></div>
-                <p style="font-style: italic;">"Di antara tanda-tanda (kebesaran)- Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya..." (Q.S Ar-Rum: 21)</p>
+                <div class="floral-ornament"><i class="bi bi-heart-fill"></i></div>
+                <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; line-height: 1.8;">
+                    "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."<br>
+                    <b>(Q.S Ar-Rum: 21)</b>
+                </p>
             </div>
         </section>
 
         <section style="background-color: #f0f7ff;">
             <div class="container">
                 <h2>Mempelai</h2>
-                <div class="card-info">
-                    <h3>Herawati, S.Pd</h3>
-                    <p>Putri ke-1 dari Bapak Ujang Didin & Ibu Isar</p>
+                <div class="mempelai-detail">
+                    <h3 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 5px;">Herawati, S.Pd</h3>
+                    <p>Putri ke-1 dari Bapak Ujang Didin dan Ibu Isar</p>
                 </div>
-                <div class="floral-ornament">&</div>
-                <div class="card-info">
-                    <h3>Ahmad Hidayat, S.Pd</h3>
-                    <p>Putra ke-1 dari Alm. Bpk. Numan & Alm. Ibu Halimah</p>
+                <div class="floral-ornament"><i class="bi bi-infinity"></i></div>
+                <div class="mempelai-detail">
+                    <h3 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 5px;">Ahmad Hidayat, S.Pd</h3>
+                    <p>Putra ke-1 dari Alm. Bpk. Numan dan Alm. Ibu Halimah</p>
                 </div>
             </div>
         </section>
@@ -119,14 +131,15 @@
                     <div class="timer-box"><span id="seconds">0</span> Detik</div>
                 </div>
                 
-                <div class="card-info">
-                    <p><strong>Akad Nikah:</strong><br>Rabu, 01 April 2026 | 09.00 WIB</p>
-                    <p><strong>Resepsi:</strong><br>01 April 2026 | 10.00 WIB - Selesai</p>
-                    <p><i class="bi bi-geo-alt-fill"></i> Kp. Balenyengked RT.36 RW. 10, Desa Tanjungwangi, Kec. Cijambe, Kab. Subang, Jawa Barat</p>
+                <div style="margin-top: 40px;">
+                    <p><strong><i class="bi bi-calendar-check"></i> Akad Nikah:</strong><br>Rabu, 01 April 2026 | 09.00 WIB</p>
+                    <p><strong><i class="bi bi-people-fill"></i> Resepsi:</strong><br>01 April 2026 | 10.00 WIB - Selesai</p>
+                    <hr style="opacity: 0.2; margin: 20px 0;">
+                    <p><i class="bi bi-geo-alt-fill" style="color: #e74c3c;"></i> Kp. Balenyengked RT.36 RW. 10, Desa Tanjungwangi, Kec. Cijambe, Kab. Subang, Jawa Barat</p>
                 </div>
 
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15858.749363065094!2d107.728867!3d-6.611181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzYnMzQuMiJTIDEwN8KwNDMnNDMuOSJF!5e0!3m2!1sid!2sid!4v1711200000000!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15856.883738096232!2d107.72886735!3d-6.6195228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69223788876c2b%3A0x6a05e56df3d12d91!2sTanjungwangi%2C%20Kec.%20Cijambe%2C%20Kabupaten%20Subang%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1711300000000!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
@@ -134,11 +147,14 @@
         <section style="background-color: #f0f7ff;">
             <div class="container">
                 <h2>Tanda Kasih</h2>
-                <div class="card-info">
+                <p>Terima kasih atas doa restu Anda. Jika ingin memberikan hadiah, silakan melalui saluran berikut:</p>
+                
+                <div class="bank-card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Bank_Muamalat_Indonesia_logo.svg/1200px-Bank_Muamalat_Indonesia_logo.svg.png" class="bank-logo" alt="Muamalat"><br>
                     <strong>1170012747</strong><br>a.n Herawati
                 </div>
-                <div class="card-info">
+                
+                <div class="bank-card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dan_motto_DANA.svg/1200px-Logo_dan_motto_DANA.svg.png" class="bank-logo" alt="DANA"><br>
                     <strong>0813-1545-691</strong><br>a.n Ahmad Hidayat
                 </div>
@@ -147,45 +163,50 @@
 
         <section>
             <div class="container">
-                <h2>Konfirmasi Kehadiran</h2>
-                <p>Kirimkan doa dan konfirmasi kehadiran Anda melalui WhatsApp kami:</p>
-                <a href="https://wa.me/6283822004008?text=Halo%20Hera%20%26%20Ahmad,%20Saya%20akan%20hadir%20di%20pernikahan%20kalian!" class="btn-wa">
+                <h2>Kehadiran & Doa</h2>
+                <p>Kami sangat menantikan kehadiran Anda di hari bahagia kami.</p>
+                <a href="https://wa.me/6283822004008?text=Assalamu'alaikum%20Hera%20%26%20Ahmad,%20Saya%20akan%20hadir%20di%20pernikahan%20kalian.%20Barakallahu%20lakuma!" target="_blank" class="btn-wa">
                     <i class="bi bi-whatsapp"></i> Konfirmasi Via WhatsApp
                 </a>
+                <p style="margin-top: 50px; font-size: 0.9rem; opacity: 0.6;">Dibuat dengan penuh cinta oleh Hera & Ahmad</p>
             </div>
         </section>
     </div>
 
     <script>
-        // Countdown Logic
-        const targetDate = new Date("April 1, 2026 09:00:00").getTime();
-
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = d;
-            document.getElementById("hours").innerText = h;
-            document.getElementById("minutes").innerText = m;
-            document.getElementById("seconds").innerText = s;
-        }, 1000);
-
-        // Music Logic
         const music = document.getElementById("bgMusic");
+        const audioBtn = document.getElementById("audioBtn");
+        const musicIcon = document.getElementById("music-icon");
+
+        function openInvitation() {
+            // Slide up cover
+            document.getElementById("cover").classList.add("hidden");
+            // Show audio control
+            audioBtn.style.display = "flex";
+            // Play Music
+            music.play();
+        }
+
         function toggleMusic() {
             if (music.paused) {
                 music.play();
-                document.getElementById("music-icon").classList.replace("bi-music-note-beamed", "bi-pause-fill");
+                musicIcon.classList.replace("bi-music-note-beamed", "bi-pause-fill");
             } else {
                 music.pause();
-                document.getElementById("music-icon").classList.replace("bi-pause-fill", "bi-music-note-beamed");
+                musicIcon.classList.replace("bi-pause-fill", "bi-music-note-beamed");
             }
         }
+
+        // Countdown Logic
+        const targetDate = new Date("April 1, 2026 09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
     </script>
 </body>
 </html>
