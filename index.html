@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Hera & Ahmad - 01 April 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>The Wedding of Hera & Ahmad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
@@ -13,7 +13,6 @@
             --soft-blue: #e3f2fd;
             --accent-gold: #c5a059;
             --text-dark: #2c3e50;
-            --comment-bg: #f1f8ff; /* Warna latar ucapan yang lebih berwarna */
         }
 
         * { box-sizing: border-box; }
@@ -23,9 +22,10 @@
             background-color: var(--soft-blue);
             color: var(--text-dark);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* Hero / Cover Section */
+        /* Cover Section */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(26, 58, 95, 0.7), rgba(26, 58, 95, 0.7)), 
@@ -36,123 +36,82 @@
             align-items: center;
             text-align: center;
             color: white;
-            padding: 20px;
             position: fixed;
             width: 100%;
-            top: 0;
-            left: 0;
             z-index: 2000;
             transition: transform 0.8s ease-in-out;
         }
         .hero.hide { transform: translateY(-100%); }
         .hero h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; margin: 10px 0; }
-        .hero p { font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; }
+        .hero p { font-size: 1.2rem; letter-spacing: 4px; }
 
         /* Main Content */
-        section { padding: 60px 20px; text-align: center; }
+        section { padding: 80px 20px; text-align: center; position: relative; }
         .container { 
             max-width: 700px; 
             margin: auto; 
             background: white; 
             padding: 50px 30px; 
-            border-radius: 40px; 
+            border-radius: 50px 0 50px 0; 
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            position: relative;
         }
 
-        .floral-header { font-size: 3rem; color: var(--accent-gold); opacity: 0.6; margin-bottom: -10px; }
-        h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 2.2rem; margin-bottom: 30px; position: relative; display: inline-block; }
-
-        /* Form Ucapan Style */
-        .form-group { text-align: left; margin-bottom: 20px; position: relative; }
-        .form-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); opacity: 0.7; }
-        
-        input, textarea {
-            width: 100%;
-            padding: 15px 15px 15px 45px; /* Memberi ruang untuk ikon */
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            font-family: inherit;
-            background-color: #fbfdff;
-            transition: border-color 0.3s;
-        }
-        input:focus, textarea:focus { border-color: var(--primary-blue); outline: none; }
-
-        /* Buku Tamu List & Comment Item */
-        .guest-book {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 40px;
-            text-align: left;
-            padding: 15px;
-            background: #f9fbfd;
-            border-radius: 20px;
-            border: 1px solid #eee;
-        }
-        .comment-item {
-            background-color: var(--comment-bg);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--primary-blue);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            position: relative;
-            overflow: hidden;
-        }
-        /* Ornamen Bunga Kecil di Kotak Ucapan */
-        .comment-item::after {
-            content: "\f3e1"; /* Kode ikon bunga dari Bootstrap Icons */
-            font-family: "bootstrap-icons";
-            position: absolute;
-            right: 15px;
-            bottom: 10px;
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            opacity: 0.1;
-        }
-
-        .comment-item strong { color: var(--primary-blue); display: block; font-size: 1.1rem; margin-bottom: 5px; }
-        .comment-item p { margin: 0; line-height: 1.6; color: #444; }
-        .comment-item small { font-size: 0.8rem; color: #888; display: block; margin-top: 10px; }
-
-        /* Buttons */
-        .btn-general { 
-            background-color: var(--primary-blue); 
-            color: white; 
-            padding: 15px 35px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            display: inline-block; 
-            font-weight: 600; 
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-        }
-        .btn-general:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-
-        /* Audio Control */
-        .audio-control { 
-            position: fixed; 
-            bottom: 25px; 
-            right: 25px; 
-            background: white; 
-            color: var(--primary-blue); 
-            width: 55px; 
-            height: 55px; 
-            border-radius: 50%; 
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            z-index: 1500; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
-        }
+        .floral-icon { color: var(--primary-blue); font-size: 2.5rem; margin: 20px 0; opacity: 0.6; }
+        h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 2.2rem; }
 
         /* Countdown */
-        #countdown { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
-        .timer-box { background: var(--primary-blue); color: white; padding: 15px; border-radius: 15px; min-width: 85px; }
+        #countdown { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+        .timer-box { background: var(--primary-blue); color: white; padding: 15px; border-radius: 15px; min-width: 80px; }
         .timer-box span { display: block; font-size: 1.8rem; font-weight: bold; }
+
+        /* Form Ucapan & Buku Tamu */
+        .guestbook-container { background: #f8fbff; padding: 25px; border-radius: 20px; border: 1px solid #e1e8f0; text-align: left; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+        .display-ucapan {
+            margin-top: 30px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .ucapan-item { 
+            background: #f1f8ff; 
+            padding: 15px; 
+            border-radius: 12px; 
+            margin-bottom: 10px; 
+            border-left: 5px solid var(--primary-blue);
+            position: relative;
+        }
+        .ucapan-item::after { content: "\f3e1"; font-family: bootstrap-icons; position: absolute; right: 10px; bottom: 5px; opacity: 0.1; font-size: 1.2rem; }
+
+        /* Buttons */
+        .btn { 
+            background: var(--primary-blue); color: white; padding: 15px 30px; border-radius: 50px; 
+            text-decoration: none; display: inline-block; font-weight: 600; border: none; cursor: pointer; transition: 0.3s;
+            width: 100%; text-align: center;
+        }
+        .btn-wa { background: #25d366; margin-top: 10px; }
+        .btn-gold { background: var(--accent-gold); width: auto; }
+
+        /* Bank & Maps */
+        .bank-card { background: #f1f8ff; padding: 20px; border-radius: 15px; margin: 15px 0; border-left: 5px solid var(--primary-blue); text-align: left; }
+        .map-frame { width: 100%; height: 350px; border-radius: 20px; border: none; margin-top: 20px; }
+
+        /* Music Control */
+        .music-toggle {
+            position: fixed; bottom: 20px; right: 20px; background: white; color: var(--primary-blue);
+            width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 3000; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -161,20 +120,16 @@
         <source src="lagu-undangan.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="audio-control" id="audioBtn" onclick="toggleMusic()">
-        <i id="music-icon" class="bi bi-pause-fill" style="font-size: 1.4rem;"></i>
+    <div class="music-toggle" id="musicBtn" onclick="toggleMusic()">
+        <i id="musicIcon" class="bi bi-pause-fill"></i>
     </div>
 
     <div class="hero" id="cover">
         <p>THE WEDDING OF</p>
         <h1>Hera & Ahmad</h1>
         <p>01 April 2026</p>
-        <div style="font-size: 2.5rem; color: var(--accent-gold); margin: 20px 0; opacity: 0.7;">
-            <i class="bi bi-flower1"></i>
-        </div>
-        <button onclick="startInvitation()" class="btn-general" style="background: var(--accent-gold); width: auto;">
-            <i class="bi bi-envelope-open-heart"></i> Buka Undangan
-        </button>
+        <div style="font-size: 2.5rem; color: var(--accent-gold); margin: 20px 0; opacity: 0.7;"><i class="bi bi-flower1"></i></div>
+        <button onclick="startInvitation()" class="btn btn-gold"><i class="bi bi-envelope-open-heart"></i> Buka Undangan</button>
     </div>
 
     <div id="main-content">
@@ -182,68 +137,97 @@
             <div class="container">
                 <p><i>Bismillahirrahmanirrahiim</i></p>
                 <p><b>Assalamualaikum Warahmatullahhi Wabarakatuh</b></p>
-                <p>Maha Suci Allah Swt. yang telah menciptakan makhluknya berpasang-pasangan, semoga ridho-Mu tercurah mengiringi pernikahan kami.</p>
-                <div style="font-size: 2.5rem; color: var(--primary-blue); margin: 20px 0; opacity: 0.6;"><i class="bi bi-heart-fill"></i></div>
-                <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; line-height: 1.8;">
-                    "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu..."<br>
-                    <b>(Q.S Ar-Rum: 21)</b>
+                <p>Maha Suci Allah Swt. yang telah menciptakan makhluknya berpasang-pasangan, semoga ridho-mu tercurah mengiringi pernikahan kami.</p>
+                <div class="floral-icon"><i class="bi bi-flower2"></i></div>
+                <p style="font-family: 'Playfair Display', serif; font-style: italic; line-height: 1.8;">
+                    "Di antara tanda-tanda (kebesaran)- Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar- benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."<br>
+                    <b>(Q.S Ar-Rum 30:21)</b>
                 </p>
             </div>
         </section>
 
         <section style="background-color: #f7faff;">
             <div class="container">
-                <div class="floral-header"><i class="bi bi-flower2"></i></div>
-                <h2>Doa & Ucapan</h2>
-                <p>Berikan doa restu dan ucapan terbaik Anda untuk kebahagiaan kami:</p>
-                
-                <div class="form-group">
-                    <i class="bi bi-person-fill"></i>
-                    <input type="text" id="namaTamu" placeholder="Nama Lengkap Anda" required>
+                <h2>Mempelai</h2>
+                <div class="mempelai-item">
+                    <h3 style="font-family: 'Great Vibes'; font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 5px;">Herawati, S.Pd</h3>
+                    <p>Putri ke-1 dari Bapak Ujang Didin dan Ibu Isar</p>
                 </div>
-                <div class="form-group">
-                    <i class="bi bi-chat-heart-fill" style="top: 25px;"></i>
-                    <textarea id="ucapanTamu" rows="5" placeholder="Tuliskan doa restu dan ucapan Anda..." required></textarea>
+                <div class="floral-icon"><i class="bi bi-infinity"></i></div>
+                <div class="mempelai-item">
+                    <h3 style="font-family: 'Great Vibes'; font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 5px;">Ahmad Hidayat, S.Pd</h3>
+                    <p>Putra ke-1 dari Alm. Bpk. Numan dan Alm. Ibu Halimah</p>
                 </div>
-                
-                <button onclick="kirimUcapan()" class="btn-general">
-                    <i class="bi bi-send-fill"></i> Kirim Ucapan
-                </button>
-                <button onclick="konfirmasiWA()" class="btn-general" style="background-color: #25d366; margin-top: 10px;">
-                    <i class="bi bi-whatsapp"></i> Kirim via WhatsApp
-                </button>
+            </div>
+        </section>
 
-                <div class="guest-book" id="listUcapan">
-                    <div class="comment-item">
+        <section>
+            <div class="container">
+                <h2>Waktu & Lokasi</h2>
+                <div id="countdown">
+                    <div class="timer-box"><span id="days">0</span> Hari</div>
+                    <div class="timer-box"><span id="hours">0</span> Jam</div>
+                    <div class="timer-box"><span id="minutes">0</span> Menit</div>
+                    <div class="timer-box"><span id="seconds">0</span> Detik</div>
+                </div>
+                
+                <div style="text-align: left; margin-top: 30px;">
+                    <p><strong><i class="bi bi-calendar-check"></i> Akad Nikah:</strong><br>Rabu, 01 April 2026 | 09.00 WIB</p>
+                    <p><strong><i class="bi bi-people-fill"></i> Resepsi:</strong><br>01 April 2026 | 10.00 WIB - Selesai</p>
+                    <hr style="opacity: 0.1; margin: 20px 0;">
+                    <p><i class="bi bi-geo-alt-fill"></i> Kp. Balenyengked RT.36 RW. 10, Desa Tanjungwangi Kec.Cijambe, Kab. Subang, Jawa Barat</p>
+                </div>
+
+                <iframe class="map-frame" src="http://googleusercontent.com/maps.google.com/4"></iframe>
+            </div>
+        </section>
+
+        <section style="background-color: #f7faff;">
+            <div class="container">
+                <h2>Tanda Kasih</h2>
+                <p>Terima kasih atas doa restunya. Jika ingin memberikan hadiah, silakan melalui:</p>
+                <div class="bank-card">
+                    <strong>Bank Muamalat</strong><br>1170012747<br>a.n Herawati
+                </div>
+                <div class="bank-card">
+                    <strong>Dana</strong><br>0813-1545-691<br>a.n Ahmad Hidayat
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Doa & Ucapan</h2>
+                <div class="guestbook-container">
+                    <input type="text" id="namaTamu" placeholder="Nama Lengkap">
+                    <textarea id="ucapanTamu" rows="4" placeholder="Tuliskan Doa & Ucapan Terbaik Anda"></textarea>
+                    <button onclick="kirimUcapan()" class="btn">Kirim Ucapan</button>
+                    <button onclick="konfirmasiWA()" class="btn btn-wa"><i class="bi bi-whatsapp"></i> Konfirmasi via WhatsApp</button>
+                </div>
+
+                <div class="display-ucapan" id="listUcapan">
+                    <div class="ucapan-item">
                         <strong>Hera & Ahmad</strong>
-                        <p>Terima kasih banyak atas semua doa dan ucapan indah yang telah diberikan. Kehadiran dan doa Anda sangat berarti bagi kami.</p>
-                        <small>Baru saja</small>
+                        <p>Selamat datang di kebahagiaan kami! Terima kasih atas doa-doanya.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section>
-            <div class="container" style="background: none; box-shadow: none;">
-                <p style="font-size: 0.9rem; opacity: 0.6;">© 2026 Hera & Ahmad Wedding</p>
-            </div>
+            <p style="opacity: 0.5;">© 2026 Hera & Ahmad Wedding</p>
         </section>
     </div>
 
     <script>
         const music = document.getElementById("bgMusic");
-        const audioBtn = document.getElementById("audioBtn");
-        const musicIcon = document.getElementById("music-icon");
+        const musicBtn = document.getElementById("musicBtn");
+        const musicIcon = document.getElementById("musicIcon");
 
         function startInvitation() {
-            // Sembunyikan Cover
             document.getElementById("cover").classList.add("hide");
-            // Tampilkan kontrol musik
-            audioBtn.style.display = "flex";
-            // Putar musik
+            musicBtn.style.display = "flex";
             music.play();
-            // Aktifkan scroll
-            document.body.style.overflow = "auto";
         }
 
         function toggleMusic() {
@@ -256,56 +240,40 @@
             }
         }
 
-        // Fungsi Simulasi Menambah Ucapan ke Daftar
-        function kirimUcapan() {
-            const nama = document.getElementById('namaTamu').value;
-            const ucapan = document.getElementById('ucapanTamu').value;
-
-            if(nama && ucapan) {
-                const list = document.getElementById('listUcapan');
-                const newItem = document.createElement('div');
-                newItem.className = 'comment-item';
-                newItem.innerHTML = `
-                    <strong>${nama}</strong>
-                    <p>${ucapan}</p>
-                    <small>Baru saja</small>
-                `;
-                
-                list.insertBefore(newItem, list.firstChild);
-                
-                // Reset Form
-                document.getElementById('namaTamu').value = '';
-                document.getElementById('ucapanTamu').value = '';
-                alert("Terima kasih, doa dan ucapan Anda telah kami terima!");
-            } else {
-                alert("Mohon isi Nama dan Ucapan Anda terlebih dahulu.");
-            }
-        }
-
-        // Fungsi Kirim Konfirmasi ke WhatsApp
-        function konfirmasiWA() {
-            const nama = document.getElementById('namaTamu').value;
-            const ucapan = document.getElementById('ucapanTamu').value;
-            if(nama && ucapan) {
-                const pesan = `Halo Hera %26 Ahmad, Saya ${nama}. %0A%0AUcapan Doa: ${ucapan}`;
-                window.open(`https://wa.me/6283822004008?text=${pesan}`, '_blank');
-            } else {
-                alert("Mohon isi nama dan ucapan sebelum mengirim ke WhatsApp.");
-            }
-        }
-
-        // Countdown Timer (Tetap sama seperti sebelumnya)
-        const targetDate = new Date("April 1, 2026 09:00:00").getTime();
+        // Countdown Timer
+        const weddingDate = new Date("April 1, 2026 09:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
-            const diff = targetDate - now;
-            if (diff > 0) {
-                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
-            }
+            const gap = weddingDate - now;
+            document.getElementById("days").innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((gap % (1000 * 60)) / 1000);
         }, 1000);
+
+        // Fitur Ucapan
+        function kirimUcapan() {
+            const nama = document.getElementById("namaTamu").value;
+            const ucapan = document.getElementById("ucapanTamu").value;
+            if(nama && ucapan) {
+                const list = document.getElementById("listUcapan");
+                const div = document.createElement("div");
+                div.className = "ucapan-item";
+                div.innerHTML = `<strong>${nama}</strong><p>${ucapan}</p>`;
+                list.insertBefore(div, list.firstChild);
+                document.getElementById("namaTamu").value = "";
+                document.getElementById("ucapanTamu").value = "";
+                alert("Terima kasih atas doa dan ucapannya!");
+            }
+        }
+
+        // Konfirmasi WhatsApp
+        function konfirmasiWA() {
+            const nama = document.getElementById("namaTamu").value;
+            const ucapan = document.getElementById("ucapanTamu").value;
+            const text = `Halo Hera %26 Ahmad, saya ${nama}. %0A%0A${ucapan}`;
+            window.open(`https://wa.me/6283822004008?text=${text}`, '_blank');
+        }
     </script>
 </body>
 </html>
