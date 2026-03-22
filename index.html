@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding of Hera & Ahmad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
@@ -13,18 +13,20 @@
             --soft-blue: #e3f2fd;
             --accent-gold: #c5a059;
             --text-dark: #2c3e50;
+            --muamalat-purple: #4a2d82;
+            --dana-blue: #118eea;
         }
 
+        * { box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             background-color: var(--soft-blue);
             color: var(--text-dark);
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* Hero / Cover Section */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(26, 58, 95, 0.7), rgba(26, 58, 95, 0.7)), 
@@ -38,38 +40,87 @@
             padding: 20px;
             position: fixed;
             width: 100%;
+            top: 0;
+            left: 0;
             z-index: 2000;
-            transition: transform 1s ease-in-out;
+            transition: transform 0.8s ease-in-out;
+        }
+        .hero.hide { transform: translateY(-100%); }
+
+        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; margin: 10px 0; }
+        .hero p { font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        /* Main Content */
+        section { padding: 80px 20px; text-align: center; }
+        .container { 
+            max-width: 700px; 
+            margin: auto; 
+            background: white; 
+            padding: 50px 30px; 
+            border-radius: 40px 0 40px 0; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary-blue);
         }
 
-        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 4rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; letter-spacing: 3px; }
+        .floral-ornament { color: var(--primary-blue); font-size: 2.5rem; margin: 25px 0; opacity: 0.6; }
+        h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 2.2rem; margin-bottom: 30px; }
 
-        /* General Section */
-        section { padding: 80px 20px; text-align: center; }
-        .container { max-width: 700px; margin: auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 8px solid var(--primary-blue); }
-
-        .floral-ornament { color: var(--primary-blue); font-size: 2.5rem; margin: 20px 0; opacity: 0.7; }
-        h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 2rem; margin-bottom: 30px; }
-
-        /* Countdown */
-        #countdown { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
-        .timer-box { background: var(--primary-blue); color: white; padding: 15px; border-radius: 15px; min-width: 80px; }
+        /* Countdown Style */
+        #countdown { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+        .timer-box { background: var(--primary-blue); color: white; padding: 15px; border-radius: 15px; min-width: 85px; box-shadow: 0 5px 15px rgba(26, 58, 95, 0.3); }
         .timer-box span { display: block; font-size: 1.8rem; font-weight: bold; }
 
-        /* Map & Button */
-        .map-container { margin: 20px 0; border-radius: 20px; overflow: hidden; border: 5px solid var(--soft-blue); }
-        .btn-wa { background-color: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; display: inline-block; margin-top: 20px; font-weight: 600; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        /* Bank Cards */
+        .bank-card { 
+            background: #f8fbff;
+            border: 1px solid #e1e8f0;
+            padding: 25px; 
+            border-radius: 20px; 
+            margin: 20px 0; 
+            position: relative;
+            overflow: hidden;
+        }
+        .bank-card img { height: 45px; margin-bottom: 10px; position: relative; z-index: 2; }
+        .bank-name-fallback { font-weight: bold; font-size: 1.2rem; margin-bottom: 5px; display: block; }
+        .muamalat-text { color: var(--muamalat-purple); }
+        .dana-text { color: var(--dana-blue); }
 
-        /* Bank Info */
-        .bank-card { border: 2px dashed var(--primary-blue); padding: 25px; border-radius: 20px; margin: 20px 0; background-color: #fbfdff; }
-        .bank-logo { height: 35px; margin-bottom: 15px; }
+        /* Buttons */
+        .btn-general { 
+            background-color: var(--primary-blue); 
+            color: white; 
+            padding: 15px 35px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            display: inline-block; 
+            font-weight: 600; 
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-wa { background-color: #25d366; }
+        .btn-gold { background-color: var(--accent-gold); }
+        .btn-general:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
         /* Audio Control */
-        .audio-control { position: fixed; bottom: 30px; right: 30px; background: white; color: var(--primary-blue); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .audio-control { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            background: white; 
+            color: var(--primary-blue); 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 50%; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            z-index: 1500; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+        }
 
-        /* Utilities */
-        .hidden { transform: translateY(-100%); pointer-events: none; }
+        .map-container { margin: 25px 0; border-radius: 25px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
@@ -79,7 +130,7 @@
     </audio>
 
     <div class="audio-control" id="audioBtn" onclick="toggleMusic()">
-        <i id="music-icon" class="bi bi-pause-fill"></i>
+        <i id="music-icon" class="bi bi-pause-fill" style="font-size: 1.5rem;"></i>
     </div>
 
     <div class="hero" id="cover">
@@ -87,35 +138,35 @@
         <h1>Hera & Ahmad</h1>
         <p>01 April 2026</p>
         <div class="floral-ornament"><i class="bi bi-flower1"></i></div>
-        <button onclick="openInvitation()" class="btn-wa" style="background: var(--accent-gold); border: none; cursor: pointer; color: white; font-family: inherit;">
+        <button onclick="startInvitation()" class="btn-general btn-gold">
             <i class="bi bi-envelope-open-heart"></i> Buka Undangan
         </button>
     </div>
 
     <div id="main-content">
-        <section id="salam">
+        <section>
             <div class="container">
                 <p><i>Bismillahirrahmanirrahiim</i></p>
                 <p><b>Assalamualaikum Warahmatullahhi Wabarakatuh</b></p>
                 <p>Maha Suci Allah Swt. yang telah menciptakan makhluknya berpasang-pasangan, semoga ridho-Mu tercurah mengiringi pernikahan kami.</p>
                 <div class="floral-ornament"><i class="bi bi-heart-fill"></i></div>
-                <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; line-height: 1.8;">
-                    "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."<br>
+                <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; line-height: 1.8;">
+                    "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya..."<br>
                     <b>(Q.S Ar-Rum: 21)</b>
                 </p>
             </div>
         </section>
 
-        <section style="background-color: #f0f7ff;">
+        <section style="background-color: #f7fbff;">
             <div class="container">
                 <h2>Mempelai</h2>
-                <div class="mempelai-detail">
-                    <h3 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 5px;">Herawati, S.Pd</h3>
+                <div class="mempelai-card">
+                    <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 5px;">Herawati, S.Pd</h3>
                     <p>Putri ke-1 dari Bapak Ujang Didin dan Ibu Isar</p>
                 </div>
                 <div class="floral-ornament"><i class="bi bi-infinity"></i></div>
-                <div class="mempelai-detail">
-                    <h3 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 5px;">Ahmad Hidayat, S.Pd</h3>
+                <div class="mempelai-card">
+                    <h3 style="font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 5px;">Ahmad Hidayat, S.Pd</h3>
                     <p>Putra ke-1 dari Alm. Bpk. Numan dan Alm. Ibu Halimah</p>
                 </div>
             </div>
@@ -131,44 +182,50 @@
                     <div class="timer-box"><span id="seconds">0</span> Detik</div>
                 </div>
                 
-                <div style="margin-top: 40px;">
-                    <p><strong><i class="bi bi-calendar-check"></i> Akad Nikah:</strong><br>Rabu, 01 April 2026 | 09.00 WIB</p>
-                    <p><strong><i class="bi bi-people-fill"></i> Resepsi:</strong><br>01 April 2026 | 10.00 WIB - Selesai</p>
-                    <hr style="opacity: 0.2; margin: 20px 0;">
-                    <p><i class="bi bi-geo-alt-fill" style="color: #e74c3c;"></i> Kp. Balenyengked RT.36 RW. 10, Desa Tanjungwangi, Kec. Cijambe, Kab. Subang, Jawa Barat</p>
+                <div style="margin-top: 40px; font-size: 1.1rem;">
+                    <p><strong><i class="bi bi-calendar-heart"></i> Akad Nikah:</strong><br>Rabu, 01 April 2026 | 09.00 WIB</p>
+                    <p><strong><i class="bi bi-cup-hot"></i> Resepsi:</strong><br>01 April 2026 | 10.00 WIB - Selesai</p>
+                    <hr style="opacity: 0.1; margin: 25px 0;">
+                    <p><i class="bi bi-geo-alt-fill" style="color: #d63031;"></i> Kp. Balenyengked RT.36 RW. 10, Desa Tanjungwangi, Kec. Cijambe, Kab. Subang, Jawa Barat</p>
                 </div>
 
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15856.883738096232!2d107.72886735!3d-6.6195228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69223788876c2b%3A0x6a05e56df3d12d91!2sTanjungwangi%2C%20Kec.%20Cijambe%2C%20Kabupaten%20Subang%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1711300000000!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.5684617565983!2d107.7289569!3d-6.5759942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e693b7724d1502b%3A0x6a0f782c5e533e46!2sTanjungwangi%2C%20Cijambe%2C%20Subang%20Regency%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1711200000000!5m2!1sen!2sid" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
 
-        <section style="background-color: #f0f7ff;">
+        <section style="background-color: #f7fbff;">
             <div class="container">
                 <h2>Tanda Kasih</h2>
-                <p>Terima kasih atas doa restu Anda. Jika ingin memberikan hadiah, silakan melalui saluran berikut:</p>
+                <p>Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih dapat melalui:</p>
                 
                 <div class="bank-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Bank_Muamalat_Indonesia_logo.svg/1200px-Bank_Muamalat_Indonesia_logo.svg.png" class="bank-logo" alt="Muamalat"><br>
-                    <strong>1170012747</strong><br>a.n Herawati
+                    <span class="bank-name-fallback muamalat-text">BANK MUAMALAT</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/id/thumb/a/a0/Bank_Muamalat_logo.svg/1200px-Bank_Muamalat_logo.svg.png" 
+                         alt="Bank Muamalat" onerror="this.style.display='none'">
+                    <p style="font-size: 1.3rem; font-weight: bold; margin: 10px 0;">1170012747</p>
+                    <p>a.n Herawati</p>
                 </div>
                 
                 <div class="bank-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dan_motto_DANA.svg/1200px-Logo_dan_motto_DANA.svg.png" class="bank-logo" alt="DANA"><br>
-                    <strong>0813-1545-691</strong><br>a.n Ahmad Hidayat
+                    <span class="bank-name-fallback dana-text">DANA</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dan_motto_DANA.svg/1024px-Logo_dan_motto_DANA.svg.png" 
+                         alt="DANA" onerror="this.style.display='none'">
+                    <p style="font-size: 1.3rem; font-weight: bold; margin: 10px 0;">0813-1545-691</p>
+                    <p>a.n Ahmad Hidayat</p>
                 </div>
             </div>
         </section>
 
         <section>
             <div class="container">
-                <h2>Kehadiran & Doa</h2>
-                <p>Kami sangat menantikan kehadiran Anda di hari bahagia kami.</p>
-                <a href="https://wa.me/6283822004008?text=Assalamu'alaikum%20Hera%20%26%20Ahmad,%20Saya%20akan%20hadir%20di%20pernikahan%20kalian.%20Barakallahu%20lakuma!" target="_blank" class="btn-wa">
-                    <i class="bi bi-whatsapp"></i> Konfirmasi Via WhatsApp
+                <h2>Konfirmasi Kehadiran</h2>
+                <p>Mohon konfirmasi kehadiran Anda melalui WhatsApp berikut:</p>
+                <a href="https://wa.me/6283822004008?text=Assalamu'alaikum%20Hera%20%26%20Ahmad,%20Saya%20akan%20hadir%20di%20pernikahan%20kalian!" class="btn-general btn-wa" target="_blank">
+                    <i class="bi bi-whatsapp"></i> WhatsApp Konfirmasi
                 </a>
-                <p style="margin-top: 50px; font-size: 0.9rem; opacity: 0.6;">Dibuat dengan penuh cinta oleh Hera & Ahmad</p>
+                <p style="margin-top: 60px; font-size: 0.85rem; opacity: 0.5;">© 2026 Hera & Ahmad Wedding</p>
             </div>
         </section>
     </div>
@@ -178,34 +235,39 @@
         const audioBtn = document.getElementById("audioBtn");
         const musicIcon = document.getElementById("music-icon");
 
-        function openInvitation() {
-            // Slide up cover
-            document.getElementById("cover").classList.add("hidden");
-            // Show audio control
+        function startInvitation() {
+            // Sembunyikan Cover
+            document.getElementById("cover").classList.add("hide");
+            // Tampilkan kontrol musik
             audioBtn.style.display = "flex";
-            // Play Music
-            music.play();
+            // Putar musik
+            music.play().catch(e => console.log("Musik butuh interaksi user"));
+            // Aktifkan scroll (jika tadinya dikunci)
+            document.body.style.overflow = "auto";
         }
 
         function toggleMusic() {
             if (music.paused) {
                 music.play();
-                musicIcon.classList.replace("bi-music-note-beamed", "bi-pause-fill");
+                musicIcon.classList.replace("bi-play-fill", "bi-pause-fill");
             } else {
                 music.pause();
-                musicIcon.classList.replace("bi-pause-fill", "bi-music-note-beamed");
+                musicIcon.classList.replace("bi-pause-fill", "bi-play-fill");
             }
         }
 
-        // Countdown Logic
+        // Countdown Timer
         const targetDate = new Date("April 1, 2026 09:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = targetDate - now;
-            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }
         }, 1000);
     </script>
 </body>
